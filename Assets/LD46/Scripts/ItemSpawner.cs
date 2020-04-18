@@ -27,4 +27,9 @@ public class ItemSpawner : MonoBehaviour
         Destroy(_item.gameObject);
         _item = null;
     }
+
+    public void Unlink()
+    {
+        _item = null;
+    }
 }
