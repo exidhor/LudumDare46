@@ -7,7 +7,7 @@ public class DragManager : MonoBehaviour
     public int layerGround;
 
     public Item _dragging;
-    public float height;
+    public Vector2 delta;
 
     // Update is called once per frame
     void Update()
@@ -50,7 +50,7 @@ public class DragManager : MonoBehaviour
 
             if(_dragging != null)
             {
-                _dragging.StartDragging(height);
+                _dragging.StartDragging(delta);
                 Baby.instance.ForceChangeTarget(_dragging);
             }
         }

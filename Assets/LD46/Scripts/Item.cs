@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
     }
 
     ItemSpawner _spawner;
+    Vector2 _delta;
 
     public void SetSpawner(ItemSpawner spawner)
     {
@@ -26,10 +27,13 @@ public class Item : MonoBehaviour
             _spawner.RemoveItem();
     }
 
-    public void StartDragging(float y)
+    public void StartDragging(Vector2 delta)
     {
+        _delta = delta;
+
         Vector3 pos = transform.position;
-        pos.y = y;
+        pos.z += _delta.x;
+        pos.y += _delta.y;
         transform.position = pos;
         _spawner = null;
         World.instance.Unregister(this);
@@ -39,6 +43,8 @@ public class Item : MonoBehaviour
     {
         Vector3 pos = transform.position;
         pos.y = 0f;
+        //pos.z += _delta.x;
+        _delta = Vector2.zero;
         transform.position = pos;
         World.instance.Register(this);
     }
@@ -47,7 +53,7 @@ public class Item : MonoBehaviour
     {
         Vector3 pos = transform.position;
         pos.x = pos2D.x;
-        pos.z = pos2D.y;
+        pos.z = pos2D.y + _delta.x;
         transform.position = pos;
     }
 }
