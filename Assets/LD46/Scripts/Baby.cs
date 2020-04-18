@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Tools;
 
-public class Baby : MonoBehaviour
+public class Baby : MonoSingleton<Baby>
 {
     public Vector2 pos2D
     {
@@ -60,6 +61,14 @@ public class Baby : MonoBehaviour
             ItemSpawnerManager.instance.Spawn();
         }
 
+    }
+
+    public void ForceChangeTarget(Item item)
+    {
+        if(target == item)
+        {
+            FindTarget();
+        }
     }
 
     void Move(Vector2 move)

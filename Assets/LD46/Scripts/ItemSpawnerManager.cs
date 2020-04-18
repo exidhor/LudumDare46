@@ -36,8 +36,6 @@ public class ItemSpawnerManager : MonoSingleton<ItemSpawnerManager>
 
             if(current == rand)
             {
-                Debug.Log("Current = " + current);
-
                 spawners[i].Spawn(ItemLibrary.instance.GetItem());
 
                 return true;
