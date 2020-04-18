@@ -19,7 +19,7 @@ public class DragManager : MonoBehaviour
     {
         RaycastHit[] hits;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        hits = Physics.RaycastAll(ray.origin, ray.direction);
+        hits = Physics.RaycastAll(ray.origin, ray.direction, 1000f, LayerMask.GetMask("Item"));
         if (hits.Length > 0)
         {
             float bestDistance = float.MaxValue;
@@ -76,7 +76,7 @@ public class DragManager : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        Physics.Raycast(ray, out hit, 100f, layerGround);
+        Physics.Raycast(ray, out hit, 100f, LayerMask.GetMask("Ground"));
 
         _dragging.SetPos2D(new Vector2(hit.point.x, hit.point.z));
     }
